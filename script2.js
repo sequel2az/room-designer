@@ -35,11 +35,6 @@ function readCookie(name) {
 }
 
 function runMyFunction() {
-  var favorite = []
-  $.each($("input[name='interestedIn']:checked"), function() {
-    favorite.push($(this).val())
-  })
-
   var src = readCookie("mysite_lead_source")
   var mysource
   if (src) {
@@ -58,6 +53,7 @@ function runMyFunction() {
       .val()
       .replace(/-/g, ""),
     comment = $("#ih-comment").val(),
+    interestedIn = $("#ih-interested").val(),
     referrer = document.referrer,
     pageurl = location.href,
     source = mysource
@@ -72,7 +68,6 @@ function runMyFunction() {
       if (isValidPhone(phone)) {
         if (isValidZip(zip)) {
           requesttype = "GCB"
-          interestedIn = favorite.join(", ") //'closet, erer';
           referrer = referrer.replace(/&/g, "^^^")
           pageurl = pageurl.replace(/&/g, "^^^")
           comment = comment.replace(/&/g, "^^^")
